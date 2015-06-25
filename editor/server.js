@@ -6,6 +6,8 @@
 */
 
 var express = require('express');
+var fs = require('fs');
+
 var app = express();
 
 // Add local editor-specific resources
@@ -19,9 +21,15 @@ app.get('/', function (req, res) {
   res.redirect("index.html");
 });
 
+app.get('/files', function (req, res) {
+  fs.readdir( "./models", function (err, files) { 
+       res.send(files.join("\n"));
+    });
+});
+
 // Start the server
 var server = app.listen(3001, function () {
   var port = server.address().port;
-  console.log('Tune your browser to:   localhost:%s', port);
+  console.log('Tune your browser to:   http://localhost:%s', port);
 
 });
