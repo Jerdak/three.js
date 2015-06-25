@@ -56,6 +56,17 @@ Menubar.File = function ( editor ) {
 	} );
 	options.add( option );
 
+
+	// Pull (JC- Temporary test function to pull data from a server)
+
+	var option = new UI.Panel();
+	option.setClass( 'option' );
+	option.setTextContent( 'Download' );
+	option.onClick( function () {
+		editor.loader.loadRemoteFile( "/models/brain.obj" );
+	} );
+	options.add( option );
+
 	//
 
 	options.add( new UI.HorizontalRule() );

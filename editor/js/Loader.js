@@ -7,6 +7,28 @@ var Loader = function ( editor ) {
 	var scope = this;
 	var signals = editor.signals;
 
+	this.loadRemoteFile = function (url) {
+		var filename = url.name;
+		var extension = url.split( '.' ).pop().toLowerCase();
+		console.log(url);
+		console.log(filename);
+		console.log(extension);
+
+		switch ( extension ) {
+			case 'obj':
+				var loader = new THREE.OBJLoader();
+				loader.load(url,function ( object ) {
+					object.name = filename;
+					editor.addObject( object );
+					editor.select( object );
+				});
+
+				break;
+			default:
+				console.log("Invalid file extension");
+				break;
+		}
+	}
 	this.loadFile = function ( file ) {
 
 		var filename = file.name;
