@@ -57,46 +57,19 @@ Menubar.File = function ( editor ) {
 	options.add( option );
 
 
-	// Pull (JC- Temporary test function to pull data from a server)
-	var newDiv = document.createElement("div"); 
-	newDiv.setAttribute("id","dialog");
-	newDiv.setAttribute("title","Remote Files");
+	// Download 
+	// Temporary UI element to create a remote download button.
 
-	var newSelect = document.createElement("select");
-	newSelect.setAttribute("id","files");
-	newSelect.setAttribute("name","files");
-	newDiv.appendChild(newSelect);
-
-  	document.body.appendChild(newDiv); 
-
-	$.get( "/files", function(resp) {
-		var tok = resp.split('\n');
-		var optGroup = document.createElement("option");
-		optGroup.innerHTML = "Select a File";
-		optGroup.setAttributeNode(document.createAttribute("disabled"));
-		optGroup.setAttributeNode(document.createAttribute("selected"));
-
-		newSelect.appendChild(optGroup);
-
-		for(i=0;i<tok.length;++i){
-			var newOption = document.createElement("option");
-			console.log("tok[i]: ",tok[i])
-			newOption.innerHTML = tok[i];
-			newSelect.appendChild(newOption);
-		}
-	  	$( "#dialog" ).dialog();
-	});
-	$( "#files" ).change(function() {
-		console.log( "Handler for .change() called." + $("#files :selected").text() );
-		editor.loader.loadRemoteFile( "/models/" + $("#files :selected").text() );
-	});
-
-  	var newContent = document.createTextNode("Hi there and greetings!"); 
 	var option = new UI.Panel();
 	option.setClass( 'option' );
 	option.setTextContent( 'Download' );
 	option.onClick( function () {
-		editor.loader.loadRemoteFile( "/models/brain.obj" );
+		var dlg = new Dialog();
+		dlg.remoteDialog("Add Remote File","/files",function(fileName){
+			editor.loader.loadRemoteFile( "/models/" + fileName );	
+		});
+
+		//editor.loader.loadRemoteFile( "/models/brain.obj" );
 	} );
 	options.add( option );
 
