@@ -7,8 +7,9 @@
 
 var express = require('express');
 var fs = require('fs');
-
 var app = express();
+var server = require('http').Server(app);
+var io = require('socket.io').listen(server);
 
 // Add local editor-specific resources
 app.use(express.static('.'));
@@ -28,8 +29,16 @@ app.get('/files', function (req, res) {
 });
 
 // Start the server
-var server = app.listen(3001, function () {
+server.listen(3001, function () {
   var port = server.address().port;
   console.log('Tune your browser to:   http://localhost:%s', port);
+
+    io.of("/")
+        .on('connection', function (socket) {
+            console.log("Connected to main page");
+            socket.on('disconnect', function (socket) {
+                console.log("Disconnected from main page")
+            });
+        });
 
 });

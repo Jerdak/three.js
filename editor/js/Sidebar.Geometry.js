@@ -178,6 +178,10 @@ Sidebar.Geometry = function ( editor ) {
 
 				parameters.add( new Sidebar.Geometry.TorusKnotGeometry( signals, object ) );
 
+			} else if ( geometry instanceof THREE.BodyLabsGeometry ) {
+
+				parameters.add( new Sidebar.Geometry.BodyLabsGeometry( signals, object ) );
+
 			}
 
 			parameters.add( new Sidebar.Geometry.Modifiers( signals, object ) );
