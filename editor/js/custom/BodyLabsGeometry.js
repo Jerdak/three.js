@@ -15,34 +15,6 @@ THREE.BodyLabsGeometry = function(pose,shape,callback){
     // The BodyLabs model requires interaction with the server (ie: asynchronous loading)
     // Supporting this behaviour in a Geometry subclas would require rewriting large portions of THreeJS.
     // So instead this constructor should return dummy geometry and callers should use asyncLoad to update.
-
-    //BodyLabs data must be pulled from the server.
-    /*var loader = new THREE.OBJLoader();
-    var self = this;
-
-    // Fow testing purposes, just load the brain model.
-    loader.load("/models/brain.obj",function ( object ) {
-        object.traverse(function(child){
-            if(child instanceof THREE.Mesh){
-                var geom = new THREE.Geometry().fromBufferGeometry( child.geometry );
-                for(var i = 0; i < geom.vertices.length; ++i){
-                    self.vertices.push(geom.vertices[i].clone());
-                }
-                for(var i = 0; i < geom.faces.length; ++i){
-                    self.faces.push(geom.faces[i].clone());
-                }
-                self.computeFaceNormals();
-                self.computeVertexNormals();
-
-                if(callback){
-                    callback(self);
-                }
-            }
-        });
-    });*/
-
-
-
 }
 
 THREE.BodyLabsGeometry.prototype = Object.create( THREE.Geometry.prototype );
@@ -51,6 +23,7 @@ THREE.BodyLabsGeometry.prototype.constructor = THREE.BodyLabsGeometry;
 THREE.BodyLabsGeometry.prototype.asyncLoad = function(callback) {
     var self = this;
 
+    console.log("BodyLabsGeometry delayed load: " + self.pose + ", " + self.shape);
     // Fow testing purposes, just load the brain model.
     var loader = new THREE.OBJLoader();
     loader.load("/models/brain.obj",function ( object ) {

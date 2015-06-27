@@ -209,6 +209,7 @@ Editor.prototype = {
 
 	addGeometry: function ( geometry ) {
 
+
 		this.geometries[ geometry.uuid ] = geometry;
 
 	},
@@ -463,9 +464,6 @@ Editor.prototype = {
 		this.camera.near = camera.near;
 		this.camera.far = camera.far;
 
-		console.log(json.scene);
-		var a = loader.parse( json.scene );
-		console.log(a)
 		this.setScene( loader.parse( json.scene ) );
 		this.scripts = json.scripts;
 
