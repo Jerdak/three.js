@@ -68,6 +68,13 @@ Sidebar.Geometry.BodyLabsGeometry = function ( signals, object ) {
     //
 
     function update() {
+        object.geometry.dispose();
+        //object.geometry = new THREE.BodyLabsGeometry("a","b")
+
+        var dummy = new THREE.BodyLabsGeometry("default_pose","default_shape");
+        dummy.asyncLoad(function(geom) {
+            object.geometry = geom;
+		});
 
        // object.geometry.dispose();
 

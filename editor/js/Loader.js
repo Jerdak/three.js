@@ -8,7 +8,7 @@ var Loader = function ( editor ) {
 	var signals = editor.signals;
 
 	this.loadRemoteFile = function (url) {
-		var filename = url.name;
+		var filename = url.replace(/^.*\/|\.[^.]*$/g, '');
 		var extension = url.split( '.' ).pop().toLowerCase();
 		console.log(url);
 		console.log(filename);
@@ -23,6 +23,34 @@ var Loader = function ( editor ) {
 					editor.select( object );
 				});
 
+				break;
+			case 'ply':
+				var loader = new THREE.PLYLoader();
+				loader.load(url,function ( object ) {
+					var geometry = object.content;
+					var material = new THREE.MeshPhongMaterial();
+					var mesh = new THREE.Mesh(geometry,material);
+
+					//geometry.sourceType = "ply";
+					//geometry.sourceFile = filename;
+					mesh.name = filename;
+					editor.addObject( mesh );
+					editor.select( mesh );
+				});
+				break;
+			case 'stl':
+				var loader = new THREE.STLLoader();
+				loader.load(url,function ( object ) {
+					var geometry = object.content;
+					var material = new THREE.MeshPhongMaterial();
+					var mesh = new THREE.Mesh(geometry,material);
+
+					geometry.sourceType = "stl";
+					geometry.sourceFile = filename;
+					mesh.name = filename;
+					editor.addObject( mesh );
+					editor.select( mesh );
+				});
 				break;
 			default:
 				console.log("Invalid file extension");

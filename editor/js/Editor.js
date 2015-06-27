@@ -114,6 +114,8 @@ Editor.prototype = {
 
 	setScene: function ( scene ) {
 
+		console.log(scene.uuid)
+		console.log(scene.name)
 		this.scene.uuid = scene.uuid;
 		this.scene.name = scene.name;
 		this.scene.userData = JSON.parse( JSON.stringify( scene.userData ) );
@@ -461,6 +463,9 @@ Editor.prototype = {
 		this.camera.near = camera.near;
 		this.camera.far = camera.far;
 
+		console.log(json.scene);
+		var a = loader.parse( json.scene );
+		console.log(a)
 		this.setScene( loader.parse( json.scene ) );
 		this.scripts = json.scripts;
 

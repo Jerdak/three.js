@@ -12738,7 +12738,12 @@ THREE.ObjectLoader.prototype = {
 						);
 
 						break;
-
+					case 'BodyLabsGeometry':
+						geometry = new THREE.BodyLabsGeometry(
+							data.pose,
+							data.shape
+						);
+						break;
 					case 'BoxGeometry':
 					case 'CubeGeometry': // backwards compatible
 

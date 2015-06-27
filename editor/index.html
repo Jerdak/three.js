@@ -12,12 +12,13 @@
 		<link rel="stylesheet" href="css/dark.css"></link>
 
 		<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-
-		
 		<script src="js/libs/jquery-ui.min.js"></script>
 
 		<script src="../build/three.min.js"></script>
 		<script src="../examples/js/libs/system.min.js"></script>
+
+
+		<script src="js/custom/BodyLabsGeometry.js"></script>
 
 		<script src="../examples/js/controls/EditorControls.js"></script>
 		<script src="../examples/js/controls/TransformControls.js"></script>
@@ -84,6 +85,7 @@
 		<script src="js/Sidebar.Object3D.js"></script>
 		<script src="js/Sidebar.Animation.js"></script>
 		<script src="js/Sidebar.Geometry.js"></script>
+		<script src="js/Sidebar.Geometry.BodyLabsGeometry.js"></script>
 		<script src="js/Sidebar.Geometry.Geometry.js"></script>
 		<script src="js/Sidebar.Geometry.BufferGeometry.js"></script>
 		<script src="js/Sidebar.Geometry.Modifiers.js"></script>
@@ -298,7 +300,7 @@
 	        $(document).ready(function(){
 	          socket.emit("ready");
 	        });
-	      
+
         </script>
 	</body>
 </html>

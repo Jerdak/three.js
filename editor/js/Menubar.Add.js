@@ -30,6 +30,30 @@ Menubar.Add = function ( editor ) {
 
 	} );
 
+	// Morphable Model
+
+	var option = new UI.Panel();
+	option.setClass( 'option' );
+	option.setTextContent( 'Morphable Model' );
+	option.onClick( function () {
+
+		var dummy = new THREE.BodyLabsGeometry("default_pose","default_shape");
+		// BodyLabs models are slightly different, they require async loading from server
+		dummy.asyncLoad(function(geom) {
+			var geometry = geom;
+			var material = new THREE.MeshPhongMaterial();
+			var mesh = new THREE.Mesh( geometry, material );
+			mesh.name = 'morphable_model ' + ( ++ meshCount );
+
+			editor.addObject( mesh );
+			editor.select( mesh );
+		});
+
+	});
+
+	options.add( option );
+
+
 	// Group
 
 	var option = new UI.Panel();
