@@ -41,6 +41,23 @@ Sidebar.Meshlab = function ( editor ) {
             console.log("Update");
             console.log(object);
 
+            var geometry = new THREE.Geometry();
+            for(var i = 0; i < data.vertices.length; ++i){
+                var v = new THREE.Vector3();
+                v.x = data.vertices[i][0];
+                v.y = data.vertices[i][1];
+                v.z = data.vertices[i][2];
+                geometry.vertices.push(v);
+            }
+            for(var i = 0; i < data.faces.length; ++i){
+                var f = new THREE.Face3(data.faces[i][0],data.faces[i][1],data.faces[i][2]);
+                geometry.faces.push(f);
+            }
+            console.log(geometry);
+            console.log(object.geometry);
+            object.geometry.dispose();
+            object.geometry = new THREE.BufferGeometry().fromGeometry(geometry);
+            signals.geometryChanged.dispatch( object );
             //TODO:  Update object geometry.  Also add some error handlers in case uuid was deleted.
         });
     });
