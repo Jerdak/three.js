@@ -34,7 +34,7 @@ Sidebar.Geometry.Geometry = function ( signals ) {
 
 		var geometry = object.geometry;
 
-		if ( geometry instanceof THREE.Geometry ) { 
+		if ( geometry instanceof THREE.Geometry ) {
 
 			container.setDisplay( 'block' );
 

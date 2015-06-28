@@ -36,22 +36,6 @@ Sidebar.Equipment = function ( editor ) {
 
 	container.add( equipmentTypeRow );
 
-    // Image Button
-
-    var testRow = new UI.Panel();
-    var testButton = new UI.ImageButton("/css/images/meshlab.png");
-    testButton.onClick(function(){
-        console.log("Clicky");
-    });
-    testRow.add(testButton);
-
-    var testButton2 = new UI.ImageButton("/css/images/meshlab.png","clicky2").setMarginLeft( '10px' )
-    testButton2.onClick(function(){
-        console.log("Clicky");
-    });
-    testRow.add(testButton2);
-
-    container.add( testRow );
     signals.objectSelected.add( function ( object ) {
         if(object.geometry instanceof THREE.BodyLabsGeometry){
             container.setDisplay( '' );

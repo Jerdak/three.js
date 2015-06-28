@@ -34,7 +34,7 @@ Sidebar.Geometry.BufferGeometry = function ( signals ) {
 
 		var geometry = object.geometry;
 
-		if ( geometry instanceof THREE.BufferGeometry ) { 
+		if ( geometry instanceof THREE.BufferGeometry ) {
 
 			container.setDisplay( 'block' );
 

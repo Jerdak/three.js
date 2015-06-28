@@ -11,6 +11,7 @@ var Sidebar = function ( editor ) {
 	container.add( new Sidebar.Scene( editor ) );
 	container.add( new Sidebar.Geometry( editor ) );
 	container.add( new Sidebar.Equipment( editor ) );
+	container.add( new Sidebar.Meshlab( editor ) );
 	//container.add( new Sidebar.Object3D( editor ) );
 	//container.add( new Sidebar.Material( editor ) );
 	//container.add( new Sidebar.Animation( editor ) );

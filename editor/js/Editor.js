@@ -393,7 +393,15 @@ Editor.prototype = {
 		} );
 
 	},
+	getByUuid: function(uuid,cb){
+		var scope = this;
 
+		this.scene.traverse( function ( child ) {
+			if ( child.uuid === uuid ) {
+				cb(child);
+			}
+		} );
+	},
 	deselect: function () {
 
 		this.select( null );

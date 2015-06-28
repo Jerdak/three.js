@@ -23,21 +23,51 @@ app.get('/', function (req, res) {
 });
 
 app.get('/files', function (req, res) {
-  fs.readdir( "./models", function (err, files) { 
+  fs.readdir( "./models", function (err, files) {
        res.send(files.join("\n"));
     });
 });
 
 // Start the server
 server.listen(3001, function () {
-  var port = server.address().port;
-  console.log('Tune your browser to:   http://localhost:%s', port);
+    var port = server.address().port;
+    console.log('Tune your browser to:   http://localhost:%s', port);
 
     io.of("/")
         .on('connection', function (socket) {
             console.log("Connected to main page");
             socket.on('disconnect', function (socket) {
                 console.log("Disconnected from main page")
+            });
+
+
+            // MESHLAB (TODO: Move this to its own module)
+
+            socket.on('meshlab_decimate', function (data) {
+                console.log(data);
+                console.log("meshlab_decimate");
+
+                socket.emit("meshlab_complete",data);
+            });
+            socket.on('meshlab_clean', function (data) {
+                console.log(data);
+                console.log("meshlab_clean");
+            });
+            socket.on('meshlab_reconstruct', function (data) {
+                console.log(data);
+                console.log("meshlab_reconstruct");
+            });
+            socket.on('meshlab_filter', function (data) {
+                console.log(data);
+                console.log("meshlab_filter");
+            });
+            socket.on('meshlab_normalize', function (data) {
+                console.log(data);
+                console.log("meshlab_normalize");
+            });
+            socket.on('meshlab_center', function (data) {
+                console.log(data);
+                console.log("meshlab_center:" + data['uuid']);
             });
         });
 
