@@ -13,7 +13,7 @@ THREE.BodyLabsGeometry = function(pose,shape,callback){
 
     // NOTE:  Do not load any data here.
     // The BodyLabs model requires interaction with the server (ie: asynchronous loading)
-    // Supporting this behaviour in a Geometry subclas would require rewriting large portions of THreeJS.
+    // Supporting this behaviour in a Geometry subclass would require rewriting large portions of THreeJS.
     // So instead this constructor should return dummy geometry and callers should use asyncLoad to update.
 }
 

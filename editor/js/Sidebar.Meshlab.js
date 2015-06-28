@@ -38,6 +38,10 @@ Sidebar.Meshlab = function ( editor ) {
 
     editor.communicator.on('meshlab_complete',function(data){
         editor.getByUuid(data['uuid'],function(object){
+            if(!object){
+                console.log("uuid has expired");
+                return;
+            }
             console.log("Update");
             console.log(object);
 
@@ -53,12 +57,11 @@ Sidebar.Meshlab = function ( editor ) {
                 var f = new THREE.Face3(data.faces[i][0],data.faces[i][1],data.faces[i][2]);
                 geometry.faces.push(f);
             }
-            console.log(geometry);
-            console.log(object.geometry);
             object.geometry.dispose();
             object.geometry = new THREE.BufferGeometry().fromGeometry(geometry);
+
+            //TODO: Figure out why this doesn't work, requires manual refresh.
             signals.geometryChanged.dispatch( object );
-            //TODO:  Update object geometry.  Also add some error handlers in case uuid was deleted.
         });
     });
 
