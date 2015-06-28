@@ -4,6 +4,16 @@
 
 var UI = {};
 
+UI.UUID = function(){
+  function s4() {
+    return Math.floor((1 + Math.random()) * 0x10000)
+      .toString(16)
+      .substring(1);
+  }
+  return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+    s4() + '-' + s4() + s4() + s4();
+}
+
 UI.Element = function ( dom ) {
 
 	this.dom = dom;
@@ -1041,3 +1051,28 @@ UI.Dialog.prototype.showModal = function () {
 	return this;
 
 };
+
+// Image Button
+
+UI.ImageButton = function ( src, tooltip, w, h) {
+	w = typeof w !== 'undefined' ?  w : 31;
+	h = typeof h !== 'undefined' ?  h : 31;
+	tooltip = typeof tooltip !== 'undefined' ?  tooltip : "";
+	var scope = this;
+
+	var dom = document.createElement( 'input' );
+	dom.setAttribute("type","image");
+	dom.setAttribute("src",src);
+	dom.setAttribute("width",w);
+	dom.setAttribute("height",h);
+	dom.setAttribute("title",tooltip);
+	dom.className = 'ImageButton';
+
+	this.dom = dom;
+
+	return this;
+
+};
+
+UI.ImageButton.prototype = Object.create( UI.Panel.prototype );
+UI.ImageButton.prototype.constructor = UI.Dialog;

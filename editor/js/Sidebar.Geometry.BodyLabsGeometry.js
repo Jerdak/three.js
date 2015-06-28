@@ -35,7 +35,7 @@ Sidebar.Geometry.BodyLabsGeometry = function ( signals, object ) {
 
     function update() {
         object.geometry.dispose();
-        //object.geometry = new THREE.BodyLabsGeometry("a","b")
+
         console.log("Updating: " + poseName.getValue() + ", " + shapeName.getValue())
         var dummy = new THREE.BodyLabsGeometry(poseName.getValue(),shapeName.getValue());
         dummy.asyncLoad(function(geom) {
@@ -43,22 +43,6 @@ Sidebar.Geometry.BodyLabsGeometry = function ( signals, object ) {
             object.geometry.computeBoundingSphere();
             signals.geometryChanged.dispatch( object );
 		});
-
-       // object.geometry.dispose();
-
-        /*object.geometry = new THREE.BodyLabsGeometry(
-            width.getValue(),
-            height.getValue(),
-            depth.getValue(),
-            widthSegments.getValue(),
-            heightSegments.getValue(),
-            depthSegments.getValue()
-        );
-
-        object.geometry.computeBoundingSphere();
-
-        signals.geometryChanged.dispatch( object );*/
-
     }
 
     return container;
